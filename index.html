@@ -73,17 +73,21 @@
 
 			<div class="language-scene">
 
+				<button id="player_control_prev" ng-click="prevVideo()">prev</button>
+
 				<button id="player_control_play" ng-click="playVideo()">play</button>
 				<button id="player_control_pause" ng-click="pauseVideo()">pause</button>
 				<button id="player_control_stop" ng-click="stopVideo()">stop</button>
+
+				<button id="player_control_next" ng-click="nextVideo()">next</button>
 
 			</div>
 
 			<br>
 
 			<ol id="playlist" class="playlist full-width list-block" ng-show="playlistItems">
-				<li class="playlist-item full-width clearfix" ng-repeat="playlistItem in playlistItems">
-					<a href="" title="" class="playlist-item-anchor" ng-click="changeVideoURL( playlistItem.v )">
+				<li class="playlist-item full-width clearfix" ng-repeat="playlistItem in playlistItems" id="playlist_{{ playlistItem.v }}">
+					<a href="" title="" class="playlist-item-anchor" ng-click="changeVideoURL( playlistItem, $index )" ng-class="itemClass( playlistItem )">
 						<ul class="list-block">
 							<li class="item-thumbnail"><img src="{{ playlistItem.thumbnail }}"></li>
 							<li class="item-title">{{ playlistItem.itemTitle }}</li>

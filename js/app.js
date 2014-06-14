@@ -28,7 +28,8 @@ function onPlayerReady(event) {
 
 }
 
-app.controller('langwijController', function ($scope, JsonService, SearchVideos) {
+
+app.controller('langwijController', function ($scope, $document, JsonService, SearchVideos) {
 
 		$scope.languages = ['Choose a language...', 'Spanish', 'French', 'Portuguese'];
 		$scope.selectedLanguage = $scope.languages[0]; // Choose a language...
@@ -73,7 +74,6 @@ app.controller('langwijController', function ($scope, JsonService, SearchVideos)
 				}
 
 				$scope.playlistItems = tmpArray;
-				console.log($scope.playlistItems);
 
 				// actually need this for the list to update
 				// adding this here makes it work off the bat, on page load
@@ -90,9 +90,13 @@ app.controller('langwijController', function ($scope, JsonService, SearchVideos)
 			updateVideos($scope.selectedLanguage);
 		};
 
-		$scope.changeVideoURL = function (v) {
+		$scope.changeVideoURL = function (playlistItem, index) {
+
 			// get the clicked playlist item's youtube id
-			$scope.v = v;
+			$scope.v = playlistItem.v;
+
+			$scope.currentItem = playlistItem;
+			$scope.currentItemIndex = index;
 
 			// make a new player listener and when ready, play it
 			$scope.player = new YT.Player('video', {
@@ -103,6 +107,11 @@ app.controller('langwijController', function ($scope, JsonService, SearchVideos)
 			});
 		};
 
+		$scope.itemClass = function (playlistItem) {
+			return playlistItem === $scope.currentItem ? 'is-playing' : undefined;
+		};
+
+		// youtube-specific controls
 		$scope.playVideo = function () {
 			$scope.player.playVideo();
 		};
@@ -114,6 +123,46 @@ app.controller('langwijController', function ($scope, JsonService, SearchVideos)
 		$scope.stopVideo = function () {
 			$scope.player.stopVideo();
 		};
+
+
+		// custom playlist controls
+		$scope.prevVideo = function () {
+			var tmp = $scope.currentItemIndex - 1;
+			
+			if (tmp > 0) {
+				$scope.currentItemIndex = tmp;
+				$scope.currentItem = $scope.playlistItems[ $scope.currentItemIndex ];
+				$scope.v = $scope.currentItem.v;
+				$scope.changeVideoURL($scope.currentItem, $scope.currentItemIndex);
+			} else {
+				console.log('sorry bro we at the start of the list');
+			}
+			// TODO make this so that we don't need v AND currentItem. A change to current update should just do it
+		};
+
+		$scope.nextVideo = function () {
+
+			var tmp = $scope.currentItemIndex + 1;
+			
+			if (tmp < $scope.playlistItems.length) {
+				$scope.currentItemIndex = tmp;
+				$scope.currentItem = $scope.playlistItems[ $scope.currentItemIndex ];
+				$scope.v = $scope.currentItem.v;
+				$scope.changeVideoURL($scope.currentItem, $scope.currentItemIndex);
+			} else {
+				console.log('sorry bro we at the end of the list');
+			}
+			// TODO make this so that we don't need v AND currentItem. A change to current update should just do it
+		};
+
+		// document.addEventListener( 'keyup', function(event) { 
+		// 	if (event.keyCode === 37) { /* LEFT */
+		// 		$scope.prevVideo();
+		// 	} else if (event.keyCode === 39) { /* RIGHT */
+		// 		$scope.nextVideo();
+		// 	}
+		// });
+
 
 		// TODO: find out how to trigger play with javascript for first video
 		// TODO: find out how to find duration
