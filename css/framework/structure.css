@@ -80,7 +80,7 @@
 	position: absolute;
 }
 .position-relative {
-	position: relative;
+	/* position: relative; */
 }
 .position-fixed {
 	position: fixed;
@@ -109,10 +109,10 @@
 .margin-05em {
 	margin: 0.5em;
 }
-.margin_1em, .margin-1em {
+.margin-1em, .margin-1em {
 	margin: 1em;
 }
-.margin_0_1em {
+.margin-0-1em {
 	margin: 0 1em;
 }
 .margin-bottom-0p5em {
@@ -133,19 +133,25 @@
 
 
 /* padding */
-.padding_1em {
+.padding-1em {
 	padding: 1em;
 }
 .padding-2em {
 	padding: 2em;
 }
-.padding_0_05em {
+.padding-1em-2em {
+	padding: 1em 2em;
+}
+.padding-2em-1em {
+	padding: 2em 1em;
+}
+.padding-0-05em {
 	padding: 0 0.5em;
 }
-.padding_0_1em {
+.padding-0-1em {
 	padding: 0 1em;
 }
-.padding_0_3em {
+.padding-0-3em {
 	padding: 0 3em;
 }
 .padding-right-1em {

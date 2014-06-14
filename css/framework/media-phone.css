@@ -12,10 +12,10 @@
 		label[for="nav_primary_toggle"] {
 			position: absolute;
 			top: 0;
-			right: 0;
+			left: 0;
 			font-size: 3em;
 			text-align: center;
-			background: transparent url('../img/icon_hamburger.svg') 8px 12px no-repeat;
+			background: transparent url('../../img/icon_hamburger.svg') 8px 12px no-repeat;
 			/*-webkit-transform: rotate(45deg);*/
 			background-size: 22px;
 		}
@@ -26,13 +26,7 @@
 			display: inline-block;
 			position: absolute;
 			top: 0;
-			right: 0;
-		}
-		.nav-collapsible-toggle + ul {
-			display: none;
-		}
-		.nav-collapsible-toggle:checked + ul {
-			display: block;
+			left: 0;
 		}
 		.nav-collapsible {
 			width: 100%;
@@ -58,7 +52,7 @@
 					border-top: 1px solid #FECCCB;
 				}
 			.nav-collapsible li:last-child {
-    			border-bottom: 0;
+				border-bottom: 0;
 			}
 		.nav-collapsible li a {
 			display: block;

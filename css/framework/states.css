@@ -2,6 +2,9 @@
 	display: none!important;
 }
 .is-hidden-via-opacity {
-	opacity: 0!important;
-	/* TODO: make this cross browser */;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-moz-opacity: 0.0;
+	-khtml-opacity: 0.0;
+	opacity: 0.0;
 }
