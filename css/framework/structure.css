@@ -1,0 +1,172 @@
+/* structure */
+
+.full-width {
+	width: 100%;
+	display: block;
+}
+.narrow-width {
+	max-width: 700px;
+	margin: 0 auto;
+}
+.touch-width {
+	width: 44px;
+}
+.width-one-third {
+	width: 33%;
+}
+	.width-one-third.middle {
+		width: 34%;
+	}
+
+
+.touch-height {
+	line-height: 44px;
+	height: 44px;
+}
+
+.list-inline > li {
+	display: inline;
+}
+
+.list-block > li {
+	display: block;
+}
+
+.list-style-none,
+.list-style-none > li {
+	list-style: none;
+}
+
+.list-style-decimal,
+.list-style-decimal > li {
+	list-style: decimal;
+}
+
+.with-pipes > li:after {
+	content: '|';
+	color: #000000;
+	padding-left: 1em;
+}
+	.with-pipes > li:last-child:after {
+		content: none;
+	}
+.display-inline {
+	display: inline;
+}
+
+.display-inline-block {
+	display: inline-block;
+}
+
+.display-block {
+	display: block!important;
+}
+
+.display-table {
+	display: table;
+}
+.display-none {
+	display: none;
+}
+.golden-ratio-small {
+	width: 38%;
+}
+
+.golden-ratio-large {
+	width: 62%;
+}
+
+.position-absolute {
+	position: absolute;
+}
+.position-relative {
+	position: relative;
+}
+.position-fixed {
+	position: fixed;
+}
+.to-top {
+	top: 0;
+}
+.to-bottom {
+	bottom: 0;
+}
+.to-right {
+	right: 0;
+}
+.to-left {
+	left: 0;
+}
+.vertical-align-top {
+	vertical-align: top;
+}
+
+
+/* margin */
+.margin-0-auto {
+	margin: 0 auto;
+}
+.margin-05em {
+	margin: 0.5em;
+}
+.margin_1em, .margin-1em {
+	margin: 1em;
+}
+.margin_0_1em {
+	margin: 0 1em;
+}
+.margin-bottom-0p5em {
+	margin-bottom: 0.5em;
+}
+.margin-bottom-1em {
+	margin-bottom: 1em;
+}
+.margin-bottom-5em {
+	margin-bottom: 5em;
+}
+.margin-right-1em {
+	margin-right: 1em;
+}
+.margin-left-1em {
+	margin-left: 1em;
+}
+
+
+/* padding */
+.padding_1em {
+	padding: 1em;
+}
+.padding-2em {
+	padding: 2em;
+}
+.padding_0_05em {
+	padding: 0 0.5em;
+}
+.padding_0_1em {
+	padding: 0 1em;
+}
+.padding_0_3em {
+	padding: 0 3em;
+}
+.padding-right-1em {
+	padding-right: 1em;
+}
+.padding-left-1em {
+	padding-left: 1em;
+}
+.padding-top-1em {
+	padding-top: 1em;
+}
+.padding-bottom-0p5em {
+	padding-bottom: 0.5em;
+}
+.padding-bottom-1em {
+	padding-bottom: 1em;
+}
+.padding-bottom-0 {
+	padding-bottom: 0;
+}
+.padding-top-2em {
+	padding-top: 2em;
+}
+

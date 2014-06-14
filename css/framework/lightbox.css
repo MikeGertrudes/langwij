@@ -1,0 +1,60 @@
+div.lightbox {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  /*background: url('screen.png');*/
+  background-color: gray;
+  background-color: rgba(0,0,0,.75);
+
+  position: fixed;
+  overflow-y: scroll;
+}
+div.lightbox:target {
+  display: block;
+}
+div.lightbox figure {
+  margin-top: 44px;
+  margin-bottom: 44px;
+}
+  .admin-bar div.lightbox figure {
+    margin-top: 76px;
+  }
+  div.lightbox figure img {
+      max-width: 90%;
+      margin-top: 5%;
+      margin-bottom: 10%;
+  }
+  div.lightbox figure figcaption {
+    position: fixed;
+    bottom: 44px;
+    padding: 10px 0;
+    min-height: 44px;
+  }
+  div.lightbox figure figcaption span {
+    display: block;
+    position: relative;
+    left: 0;
+    width: 90%;
+  }
+  .lightbox-close {
+    border-left: 1px solid #333;
+    padding: 10px 0;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    top: 0;
+    width: 10%;
+  }
+body.has-overlay {
+  overflow: hidden;
+}
+/** IE doesn't support :target, so we use CSS expressions **/
+div.lightbox {
+  display: expression((document.location.toString().split('#').slice(1) == this.id)?'block':'none');
+}

@@ -1,0 +1,10 @@
+.btn {
+	line-height: 44px;
+	border: 0;
+}
+input[type="submit"].btn {
+	height: 44px;
+	-webkit-appearance: none;
+    -webkit-border-radius:0; 
+    border-radius:0;
+}

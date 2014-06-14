@@ -1,0 +1,81 @@
+@media only screen 
+	and (max-width: 568px) {
+		.media-desktop {
+			display: none;
+		}
+		.media-mobile {
+			display: block;
+		}
+		.admin-bar .fixed-top {
+			top: 46px;
+		}
+		label[for="nav_primary_toggle"] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-size: 3em;
+			text-align: center;
+			background: transparent url('../img/icon_hamburger.svg') 8px 12px no-repeat;
+			/*-webkit-transform: rotate(45deg);*/
+			background-size: 22px;
+		}
+		.nav-collapsible {
+			display: block;
+		}
+		.nav-collapsible-toggle {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		.nav-collapsible-toggle + ul {
+			display: none;
+		}
+		.nav-collapsible-toggle:checked + ul {
+			display: block;
+		}
+		.nav-collapsible {
+			width: 100%;
+			padding: 0;
+		}
+		.nav-collapsible .with_pipes > li:after {
+			content: none;
+		}
+		.nav-collapsible li {
+			display: block;
+			line-height: 43px;
+			padding: 0 1em 0 1em;
+			border-bottom: 1px solid #9CCCB4;
+			text-align: left;
+		}
+			body.lang-fr .nav-collapsible li {
+				border-bottom: 1px solid #FECCCB;
+			}
+			.nav-collapsible li:first-child {
+				border-top: 1px solid #9CCCB4;
+			}
+				body.lang-fr .nav-collapsible li:first-child {
+					border-top: 1px solid #FECCCB;
+				}
+			.nav-collapsible li:last-child {
+    			border-bottom: 0;
+			}
+		.nav-collapsible li a {
+			display: block;
+			padding-left: 0;
+		}
+
+		/* content */
+		.narrow-width.padding_1em,
+		.narrow-width.padding-1em {
+			padding: 1em 7.5%;
+		}
+		.parallax-slide {
+			padding: 1em 2em!important;
+		}
+
+		/* forms */
+		input[type="submit"].btn {
+			width: 100%;
+		}
+}

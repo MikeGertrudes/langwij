@@ -1,0 +1,7 @@
+.is-hidden {
+	display: none!important;
+}
+.is-hidden-via-opacity {
+	opacity: 0!important;
+	/* TODO: make this cross browser */;
+}

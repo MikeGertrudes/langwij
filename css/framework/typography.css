@@ -1,0 +1,52 @@
+.font-size-small {
+	font-size: .8em;
+}
+
+.font-size-medium {
+	font-size: 1em;
+}
+.font-size-1p2em {
+	font-size: 1.2em;
+}
+.font-size-1p5em {
+	font-size: 1.5em;
+}
+.font-size-large {
+	font-size: 2.5em;
+	font-weight: 500;
+}
+.font-weight-bold {
+	font-weight: 500;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.text-align-right {
+	text-align: right;
+}
+.text-decoration-none {
+	text-decoration: none;
+}
+.text-decoration-none:hover, .text-decoration-none:focus {
+	text-decoration: underline;
+}
+.text-indent {
+	text-indent: 1.5em;
+}
+
+i, em{
+	font-style: italic;
+}
+strong, b {
+	font-weight: bold;
+}
+
+.with-border {
+	border-bottom: 1px solid #ccc;
+}

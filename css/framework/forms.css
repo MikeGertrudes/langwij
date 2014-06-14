@@ -1,0 +1,19 @@
+.input-text, .textarea{
+	padding: 0.5em 1em;
+	font-family: Courier;
+	border: 1px solid #ccc;
+	font-size: 1.2em;
+	outline: 0;
+	-webkit-box-shadow: inset 0px 1px 0px rgba(51,51,51,.1);
+	-moz-box-shadow: inset 0px 1px 0px rgba(51,51,51,.1);
+	box-shadow: inset 0px 1px 0px rgba(51,51,51,.1);
+	margin-bottom: 0;
+}
+.input-left {
+	width: 50%;
+	float: left;
+}
+.input-right {
+	width: 50%;
+	float: right;
+}
