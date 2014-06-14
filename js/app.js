@@ -143,12 +143,23 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			$scope.currentItemIndex = index;
 
 			// make a new player listener and when ready, play it
-			$scope.player = new YT.Player('video', {
-				events: {
-					// call this function when player is ready to use
-					'onReady': $scope.playVideo
-				}
-			});
+			if (!$scope.player) {
+				// player does not exist yet, create it
+				console.log('player does not exist yet, lets create one');
+				$scope.player = new YT.Player('video', {
+					// height: '390',
+					// width: '640',
+					videoId: $scope.v,
+					events: {
+						// call this function when player is ready to use
+						'onReady': $scope.playVideo
+					}
+				});
+			} else {
+				// player exists
+				console.log('player exists');
+				$scope.player.loadVideoById($scope.v);
+			}
 		};
 
 		$scope.itemClass = function (playlistItem) {
@@ -157,6 +168,8 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 		// youtube-specific controls
 		$scope.playVideo = function () {
+			console.log('video is onReady');
+			console.log($scope.player);
 			$scope.player.playVideo();
 		};
 
@@ -225,20 +238,24 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 		// TODO: right and left nav
 		// TODO: flags
+		// TODO: if you just up and click play it should start playing the playlist from the beginning
+		// TODO: make the footer nav a collapsible css/html module
+		// TODO: ng-include for these partials, so we don't have to see that blink. views, you know?
+		// TODO: see why it isn't playing on iPhone
 });
 
-app.directive('youTubeEmbed', function ($sce) {
-	return {
-		restrict: 'E',
-		replace: true,
-		template: '<iframe src="{{ url }}" frameborder="0" allowfullscreen id="video"></iframe>',
-		link: function (scope, element, attrs) {
-			scope.$watch('v', function (value) {
-				scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + attrs.v + '?enablejsapi=1');
-			});
-		}
-	};
-});
+// app.directive('youTubeEmbed', function ($sce) {
+// 	return {
+// 		restrict: 'E',
+// 		replace: true,
+// 		template: '<iframe src="{{ url }}" frameborder="0" allowfullscreen id="video"></iframe>',
+// 		link: function (scope, element, attrs) {
+// 			scope.$watch('v', function (value) {
+// 				scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + attrs.v + '?enablejsapi=1');
+// 			});
+// 		}
+// 	};
+// });
 
 // app.factory('JsonService', function ($resource) {
 // 	return $resource('playlist.json');
