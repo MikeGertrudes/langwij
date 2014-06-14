@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "langwij"
+AuthUserFile /public_html/staging/.htpasswd
+Require valid-user

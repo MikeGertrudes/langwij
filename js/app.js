@@ -31,27 +31,71 @@ function onPlayerReady(event) {
 
 app.controller('langwijController', function ($scope, $document, JsonService, SearchVideos) {
 
-		$scope.languages = ['Choose a language...', 'Spanish', 'French', 'Portuguese'];
+		$scope.languages = [
+			{
+				name: 'Choose a Language...',
+				value: 0,
+				icon: '?'
+			}, 
+			{
+				name: 'Spanish',
+				value: 'espanol',
+				icon: 'E'
+			}, 
+			{
+				name: 'French',
+				value: 'francais',
+				icon: 'F'
+			}, 
+			{	
+				name: 'Portuguese',
+				value: 'portugues',
+				icon: 'P'
+			}
+		];
+
+		// default starting language
 		$scope.selectedLanguage = $scope.languages[0]; // Choose a language...
+		//$scope.selectedLanguage; // Choose a language...
 
 
 		// if the google youtube api exists, search it, otherwise fallback to static
-		if (gapi.length !== 0) {
+		//console.log($scope.selectedLanguage.value);
 
-			updateVideos($scope.selectedLanguage);
+		// commenting this out to not have a starting language chosen/and videos
+		// if (gapi.length !== 0) {
 
-		} else {
-			// get playlist
-			var getPlaylist = JsonService.someFunc();
-			getPlaylist.then( function(response) {
-				$scope.playlistItems = response.data;
-				console.log(response.data);
-			});
-		}
+		// 	updateVideos($scope.selectedLanguage);
+
+		// } else {
+		// 	// get playlist
+		// 	var getPlaylist = JsonService.someFunc();
+		// 	getPlaylist.then( function(response) {
+		// 		$scope.playlistItems = response.data;
+		// 		console.log(response.data);
+		// 	});
+		// }
 
 		// search videos
-		function updateVideos (language) {
+		//function updateVideos (language) {
+		$scope.$watch('selectedLanguage', function() {
+			
+			if ($scope.selectedLanguage.value !== 0) {
+
+				$scope.updateVideos($scope.selectedLanguage.value);
+
+
+			} else {
+				console.error('selectedLanguage is not defined');
+			}
+
+		}, true);
+
+		$scope.updateVideos = function(language) {
+
+			// do something here
 			var searchVideos = SearchVideos.search(language);
+
 			searchVideos.execute(function(response) {
 				var str = JSON.stringify(response.result);
 
@@ -73,7 +117,12 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 					tmpArray.push(tmpObject);
 				}
 
-				$scope.playlistItems = tmpArray;
+				// need this arghhhh to get it to update correctly
+				// is it the right way???
+				// it works though :/
+				$scope.$apply(function () {
+					$scope.playlistItems = tmpArray;
+				});
 
 				// actually need this for the list to update
 				// adding this here makes it work off the bat, on page load
@@ -84,11 +133,6 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				//$scope.$apply();
 			});
 		}
-
-		$scope.updateLanguage = function () {
-			console.log($scope.selectedLanguage);
-			updateVideos($scope.selectedLanguage);
-		};
 
 		$scope.changeVideoURL = function (playlistItem, index) {
 
@@ -178,6 +222,9 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		// TODO: turn updateVideos into a factory
 		// TODO: think about the need for a service, for maybe caching different language calls?
 		// TODO: hard cache from youtube
+
+		// TODO: right and left nav
+		// TODO: flags
 });
 
 app.directive('youTubeEmbed', function ($sce) {
@@ -214,7 +261,9 @@ app.factory('SearchVideos', function () {
 				q: q,
 				part: 'snippet',
 				type: 'video',
-				maxResults: 6
+				regionCode: 'FR', // region code
+				hl: 'fr_FR', // for text responses, what language should be used
+				maxResults: 8
 			});
 
 			return request;

@@ -1,6 +1,8 @@
 <html ng-controller="langwijController">
 	<head>
 
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
 		<meta name="viewport" content="initial-scale=1.0,width=320.1,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
 		
 		<link rel="stylesheet" type="text/css" href="css/framework/reset.css">
@@ -56,18 +58,20 @@
 				</li><!--
 			 --><li class="display-inline-block position-relative width-one-third text-align-right">
 					<form name="language_selector" id="language_selector">
-						<label for="language_selector_select" class="media-mobile white touch-height touch-width"></label>
-						<select class="is-hidden-via-opacity" name="language_selector_select" id="language_selector_select" ng-model="selectedLanguage" ng-options="language for language in languages" ng-change="updateLanguage()">
-							<option value="French">French</option>
-							<option value="Spanish">Spanish</option>
-							<option value="Portuguese">Portuguese</option>
+						<label for="language_selector_select" id="language_selector_select_label" class="media-mobile white touch-height touch-width" ng-model="languages">{{ selectedLanguage.icon}}</label>
+						<select class="is-hidden-via-opacity" name="language_selector_select" id="language_selector_select" ng-model="selectedLanguage" ng-options="language.name for language in languages">
 						</select>
 					</form>
 				</li>
 			</ul>
 		</header>
 
-		<section class="content narrow-width margin-0-auto padding-2em-1em">
+		<section class="content narrow-width margin-0-auto padding-2em-1em" ng-hide="playlistItems">
+			<h2 class="font-weight-bold">Loading...</h2>
+			<p>We thank you for patience while we load your entertainment for this evening.</p>
+		</section>
+
+		<section class="content narrow-width margin-0-auto padding-2em-1em" ng-show="playlistItems">
 
 			<you-tube-embed v="{{ v }}"></you-tube-embed>
 
@@ -108,17 +112,20 @@
 
 			<br>
 
-			<footer class="text-align-center">
-				<nav id="tertiary" class="padding-1em">
-					<ul>
-						<li><a href="" title="" class="full-width touch-height">Link 1</a></li>
-						<li><a href="" title="" class="full-width touch-height">Link 2</a></li>
-						<li><a href="" title="" class="full-width touch-height">Link 3</a></li>
-					</ul>
-				</nav>
-				<span class="copyright display-block padding-1em">&copy; 2014 langwij</span>
-			</footer>
+			{{playlistItems}}
 		</section>
+
+		<footer class="text-align-center">
+			<nav id="tertiary" class="padding-1em">
+				<ul>
+					<li><a href="" title="" class="full-width touch-height">Link 1</a></li>
+					<li><a href="" title="" class="full-width touch-height">Link 2</a></li>
+					<li><a href="" title="" class="full-width touch-height">Link 3</a></li>
+				</ul>
+			</nav>
+			<span class="copyright display-block padding-1em">&copy; 2014 langwij</span>
+		</footer>
+
 
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.10/angular.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
