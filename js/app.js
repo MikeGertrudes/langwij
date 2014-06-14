@@ -12,6 +12,22 @@ function manuallyBootstrapAngular () {
 	});
 }
 
+function onPlayerReady(event) {
+
+	console.log('player ready');
+	// // bind events
+	// var playButton = document.getElementById('player_control_play');
+	// playButton.addEventListener('click', function() {
+	// 	player.playVideo();
+	// });
+
+	// var pauseButton = document.getElementById('player_control_pause');
+	// pauseButton.addEventListener('click', function() {
+	// 	player.pauseVideo();
+	// });
+
+}
+
 app.controller('langwijController', function ($scope, JsonService, SearchVideos) {
 
 		$scope.languages = ['Choose a language...', 'Spanish', 'French', 'Portuguese'];
@@ -49,7 +65,7 @@ app.controller('langwijController', function ($scope, JsonService, SearchVideos)
 					tmpObject.thumbnail =  response.result.items[i].snippet.thumbnails['default'].url;
 					tmpObject.language = $scope.selectedLanguage;
 					tmpObject.duration = 'n/a';
-					tmpObject.url = 'https://www.youtube.com/watch?v=' + response.result.items[i].id.videoId;
+					tmpObject.url = '//www.youtube.com/embed/' + response.result.items[i].id.videoId;
 					tmpObject.v = response.result.items[i].id.videoId;
 
 					// update the tmp array
@@ -70,9 +86,34 @@ app.controller('langwijController', function ($scope, JsonService, SearchVideos)
 		}
 
 		$scope.updateLanguage = function () {
-			console.log($scope.selectedLanguage)
+			console.log($scope.selectedLanguage);
 			updateVideos($scope.selectedLanguage);
-		}
+		};
+
+		$scope.changeVideoURL = function (v) {
+			// get the clicked playlist item's youtube id
+			$scope.v = v;
+
+			// make a new player listener and when ready, play it
+			$scope.player = new YT.Player('video', {
+				events: {
+					// call this function when player is ready to use
+					'onReady': $scope.playVideo
+				}
+			});
+		};
+
+		$scope.playVideo = function () {
+			$scope.player.playVideo();
+		};
+
+		$scope.pauseVideo = function () {
+			$scope.player.pauseVideo();
+		};
+
+		$scope.stopVideo = function () {
+			$scope.player.stopVideo();
+		};
 
 		// TODO: find out how to trigger play with javascript for first video
 		// TODO: find out how to find duration
@@ -94,12 +135,10 @@ app.directive('youTubeEmbed', function ($sce) {
 	return {
 		restrict: 'E',
 		replace: true,
-		template: '<iframe src="{{ url }}" frameborder="0" allowfullscreen></iframe>',
+		template: '<iframe src="{{ url }}" frameborder="0" allowfullscreen id="video"></iframe>',
 		link: function (scope, element, attrs) {
-			console.log('test v');
 			scope.$watch('v', function (value) {
-				console.log('test v inside', attrs.v);
-				scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + attrs.v);
+				scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + attrs.v + '?enablejsapi=1');
 			});
 		}
 	};
@@ -126,7 +165,7 @@ app.factory('SearchVideos', function () {
 				q: q,
 				part: 'snippet',
 				type: 'video',
-				maxResults: 10
+				maxResults: 6
 			});
 
 			return request;

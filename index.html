@@ -32,21 +32,21 @@
 						<nav class="slidepanel left with-transition bg-gray text-align-left">
 							<h3 class="bg-gray-e1e1e8 padding-0-1em">General</h3>
 							<ul class="gray-eeeeee padding-1em">
-								<li>Home</li>
-								<li>Playlists</li>
-								<li>Change Language</li>
+								<li><a href="">Home</a></li>
+								<li><a href="">Playlists</a></li>
+								<li><a href="">Change Language</a></li>
 							</ul>
 							<h3 class="bg-gray-e1e1e8 padding-0-1em">My Account</h3>
 							<ul class="gray-eeeeee padding-1em">
-								<li>My Preferences</li>
-								<li>Change Password</li>
-								<li>Change Email</li>
-								<li>Log Out</li>
+								<li><a href="">My Preferences</a></li>
+								<li><a href="">Change Password</a></li>
+								<li><a href="">Change Email</a></li>
+								<li><a href="">Log Out</a></li>
 							</ul>
 							<h3 class="bg-gray-e1e1e8 padding-0-1em">Help</h3>
 							<ul class="gray-eeeeee padding-1em">
-								<li>F.A.Q.</li>
-								<li>Contact Us</li>
+								<li><a href="">F.A.Q.</a></li>
+								<li><a href="">Contact Us</a></li>
 							</ul>
 						</nav>
 					</form>
@@ -69,15 +69,21 @@
 
 		<section class="content narrow-width margin-0-auto padding-2em-1em">
 
+			<you-tube-embed v="{{ v }}"></you-tube-embed>
+
 			<div class="language-scene">
-				<button id="player_control">play</button>
+
+				<button id="player_control_play" ng-click="playVideo()">play</button>
+				<button id="player_control_pause" ng-click="pauseVideo()">pause</button>
+				<button id="player_control_stop" ng-click="stopVideo()">stop</button>
+
 			</div>
 
 			<br>
 
 			<ol id="playlist" class="playlist full-width list-block" ng-show="playlistItems">
 				<li class="playlist-item full-width clearfix" ng-repeat="playlistItem in playlistItems">
-					<a href="" title="" class="playlist-item-anchor">
+					<a href="" title="" class="playlist-item-anchor" ng-click="changeVideoURL( playlistItem.v )">
 						<ul class="list-block">
 							<li class="item-thumbnail"><img src="{{ playlistItem.thumbnail }}"></li>
 							<li class="item-title">{{ playlistItem.itemTitle }}</li>
@@ -91,9 +97,6 @@
 								</ul>
 							</li>
 							<li class="item-language is-hidden">{{ playlistItem.language }}</li>
-							<li class="item-embed is-hidden">
-								<you-tube-embed v="{{ playlistItem.v }}"></you-tube-embed>
-							</li>
 						</ul>
 					</a>
 				</li>
@@ -116,6 +119,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.10/angular.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js"></script>
 		<script src="js/app.js"></script>
+		<script src="//www.youtube.com/player_api"></script>
 		<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 
 	</body>

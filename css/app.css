@@ -27,6 +27,11 @@ label[for="language_selector_select"] {
 	width: 95%;
 }
 
+/* video */
+#video {
+	width: 100%;
+}
+
 /* language-scene */
 
 .language-scene {
@@ -49,6 +54,13 @@ label[for="language_selector_select"] {
 			display: block;
 			text-decoration: none;
 		}
+			.playlist .playlist-item .playlist-item-anchor:visited {
+				background-color: #eeeeee;
+			}
+			.playlist .playlist-item .playlist-item-anchor:hover {
+				background-color: #e1e1e8;
+				border: none;
+			}			
 			.playlist .playlist-item:first-child {
 				border-top: 1px solid #eeeeee;
 			}
