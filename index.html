@@ -58,7 +58,7 @@
 				</li><!--
 			 --><li class="display-inline-block position-relative width-one-third text-align-right">
 					<form name="language_selector" id="language_selector">
-						<label for="language_selector_select" id="language_selector_select_label" class="media-mobile white touch-height touch-width" ng-model="languages">{{ selectedLanguage.icon}}</label>
+						<label for="language_selector_select" id="language_selector_select_label" class="media-mobile white touch-height touch-width {{ selectedLanguage.icon}}" ng-model="languages"></label>
 						<select class="is-hidden-via-opacity" name="language_selector_select" id="language_selector_select" ng-model="selectedLanguage" ng-options="language.name for language in languages">
 						</select>
 					</form>
@@ -90,8 +90,8 @@
 			<br>
 
 			<ol id="playlist" class="playlist full-width list-block" ng-show="playlistItems">
-				<li class="playlist-item full-width clearfix" ng-repeat="playlistItem in playlistItems" id="playlist_{{ playlistItem.v }}">
-					<a href="" title="" class="playlist-item-anchor" ng-click="changeVideoURL( playlistItem, $index )" ng-class="itemClass( playlistItem )">
+				<li class="playlist-item full-width clearfix" ng-repeat="playlistItem in playlistItems">
+					<a href="" title="" class="playlist-item-anchor" id="playlist_{{ playlistItem.v }}" ng-click="changeVideoURL( playlistItem, $index )" ng-class="itemClass( playlistItem )">
 						<ul class="list-block">
 							<li class="item-thumbnail"><img src="{{ playlistItem.thumbnail }}"></li>
 							<li class="item-title">{{ playlistItem.itemTitle }}</li>

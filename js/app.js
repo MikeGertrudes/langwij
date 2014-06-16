@@ -35,22 +35,22 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			{
 				name: 'Choose a Language...',
 				value: 0,
-				icon: '?'
+				icon: 'flag-united-states'
 			}, 
 			{
 				name: 'Spanish',
 				value: 'espanol',
-				icon: 'E'
+				icon: 'flag-spain'
 			}, 
 			{
 				name: 'French',
 				value: 'francais',
-				icon: 'F'
+				icon: 'flag-france'
 			}, 
 			{	
 				name: 'Portuguese',
 				value: 'portugues',
-				icon: 'P'
+				icon: 'flag-portugal'
 			}
 		];
 
@@ -63,18 +63,18 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		//console.log($scope.selectedLanguage.value);
 
 		// commenting this out to not have a starting language chosen/and videos
-		// if (gapi.length !== 0) {
+		//if (gapi.length !== 0) {
 
-		// 	updateVideos($scope.selectedLanguage);
+		//	updateVideos($scope.selectedLanguage);
 
-		// } else {
-		// 	// get playlist
-		// 	var getPlaylist = JsonService.someFunc();
-		// 	getPlaylist.then( function(response) {
-		// 		$scope.playlistItems = response.data;
-		// 		console.log(response.data);
-		// 	});
-		// }
+		//} else {
+		//	// get playlist
+		//	var getPlaylist = JsonService.someFunc();
+		//	getPlaylist.then( function(response) {
+		//		$scope.playlistItems = response.data;
+		//		console.log(response.data);
+		//	});
+		//}
 
 		// search videos
 		//function updateVideos (language) {
@@ -83,7 +83,6 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			if ($scope.selectedLanguage.value !== 0) {
 
 				$scope.updateVideos($scope.selectedLanguage.value);
-
 
 			} else {
 				console.error('selectedLanguage is not defined');
@@ -132,7 +131,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				// i see, it could be because it only because an angular app once google returns, which sucks...hmmm
 				//$scope.$apply();
 			});
-		}
+		};
 
 		$scope.changeVideoURL = function (playlistItem, index) {
 
@@ -152,7 +151,8 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 					videoId: $scope.v,
 					events: {
 						// call this function when player is ready to use
-						'onReady': $scope.playVideo
+						'onReady': $scope.playVideo,
+						'onStateChange': $scope.videoStopped
 					}
 				});
 			} else {
@@ -160,6 +160,8 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				console.log('player exists');
 				$scope.player.loadVideoById($scope.v);
 			}
+
+			$scope.highlightCurrentVideo($scope.v);
 		};
 
 		$scope.itemClass = function (playlistItem) {
@@ -181,12 +183,19 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			$scope.player.stopVideo();
 		};
 
+		$scope.videoStopped = function (event) {
+			// sense for 0, that's youtube telling us the video has stopped
+			if (event.data === 0) {
+				console.log('video stopped');
+				$scope.nextVideo();
+			}
+		};
 
 		// custom playlist controls
 		$scope.prevVideo = function () {
 			var tmp = $scope.currentItemIndex - 1;
 			
-			if (tmp > 0) {
+			if (tmp >= 0) {
 				$scope.currentItemIndex = tmp;
 				$scope.currentItem = $scope.playlistItems[ $scope.currentItemIndex ];
 				$scope.v = $scope.currentItem.v;
@@ -208,8 +217,16 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				$scope.changeVideoURL($scope.currentItem, $scope.currentItemIndex);
 			} else {
 				console.log('sorry bro we at the end of the list');
+
 			}
 			// TODO make this so that we don't need v AND currentItem. A change to current update should just do it
+		};
+
+		// styles
+		$scope.highlightCurrentVideo = function (v) {
+			console.log('highlightCurrentVideo', '#playlist_' + v);
+			angular.element(document.querySelector('.is-playing')).removeClass('is-playing');
+			angular.element(document.getElementById('playlist_' + v) ).addClass('is-playing');
 		};
 
 		// document.addEventListener( 'keyup', function(event) { 
@@ -221,7 +238,6 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		// });
 
 
-		// TODO: find out how to trigger play with javascript for first video
 		// TODO: find out how to find duration
 		// TODO: is it possible to determine the language of the video?
 		// TODO: separate some of these into separate files
@@ -231,17 +247,22 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		//		 to test this I bet a setInterval could do a funny trick, gapi wasn't recognized before
 		//		 or maybe thiere is a way to listen, or set an event off when its loaded
 		// TODO: background loaders to the videos...spinners or something, different background
-		// TODO: get this into git!
 		// TODO: turn updateVideos into a factory
 		// TODO: think about the need for a service, for maybe caching different language calls?
 		// TODO: hard cache from youtube
 
-		// TODO: right and left nav
 		// TODO: flags
-		// TODO: if you just up and click play it should start playing the playlist from the beginning
 		// TODO: make the footer nav a collapsible css/html module
 		// TODO: ng-include for these partials, so we don't have to see that blink. views, you know?
 		// TODO: see why it isn't playing on iPhone
+		// TODO: autoplay does not work with these videos on mobile...keep this in mind
+		//		 setting this into an interval supposedly works
+		//		 or cueVideoById(id)
+		//		 its something where videos can't autoplay. we might have to show a video (opacity 0) with an overlay to get the user to click it and
+		//		 interact with it. this might not work for continuous playlist play though...desktop is fine
+		// TODO: highlight current playing item ALWAYS
+		// TODO: what to do in the case of youtube not allowing it?
+
 });
 
 // app.directive('youTubeEmbed', function ($sce) {

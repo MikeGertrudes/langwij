@@ -11,6 +11,9 @@ label[for="language_selector_select"] {
 	background-color: #333;
 	width: 32px;
 	height: 19px;
+	background-image: url('../img/sprite_flags.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 #language_selector_select {
 	position: absolute;
@@ -29,7 +32,8 @@ label[for="language_selector_select"] {
 /* video */
 #video {
 	width: 100%;
-	display: none;
+	/* display: none; */
+	/* height: 30px; */
 }
 
 /* language-scene */
@@ -108,3 +112,20 @@ label[for="language_selector_select"] {
 					background-color: #e1e1e8;
 					font-size: 12px;
 				}
+
+/* flags */
+#language_selector_select_label {
+
+}
+.flag-united-states {
+	background-position: 0 0;
+}
+.flag-spain {
+	background-position: 0 -37px;
+}
+.flag-france {
+	background-position: 0 -74px;
+}
+.flag-portugal {
+	background-position: 0 -110px;
+}
