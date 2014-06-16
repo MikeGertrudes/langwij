@@ -89,3 +89,35 @@ a:visited {
 .border-black {
 	border-color: black;
 }
+
+/* custom */
+.global-color-1 {
+	color: #166502;
+}
+	.bg-global-color-1 {
+		background-color: #166502;
+	}
+.global-color-2 {
+	color: #51fe24;
+}
+	.bg-global-color-2 {
+		background-color: #51fe24;
+	}
+.global-color-3 {
+	color: #2ab107;
+}
+	.bg-global-color-3 {
+		background-color: #2ab107;
+	}
+.global-color-4 {
+	color: #650050;
+}
+	.bg-global-color-4 {
+		background-color: #650050;
+	}
+.global-color-5 {
+	color: #b1078e;
+}
+	.bg-global-color-5 {
+		background-color: #b1078e;
+	}

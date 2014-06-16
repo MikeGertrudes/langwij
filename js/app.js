@@ -262,6 +262,9 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		//		 interact with it. this might not work for continuous playlist play though...desktop is fine
 		// TODO: highlight current playing item ALWAYS
 		// TODO: what to do in the case of youtube not allowing it?
+		// TODO: what to do when we get to end of list
+		// TODO: colors
+		// TODO: css hide, or template ng-include
 
 });
 

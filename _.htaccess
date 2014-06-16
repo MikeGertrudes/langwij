@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "langwij"
-AuthUserFile .htpasswd
-Require valid-user

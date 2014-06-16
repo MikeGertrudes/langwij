@@ -46,6 +46,7 @@
 	content: '|';
 	color: #000000;
 	padding-left: 1em;
+	padding-right: .8em;
 }
 	.with-pipes > li:last-child:after {
 		content: none;
@@ -141,6 +142,9 @@
 }
 .padding-1em-2em {
 	padding: 1em 2em;
+}
+.padding-2em-0 {
+	padding: 2em 0;
 }
 .padding-2em-1em {
 	padding: 2em 1em;

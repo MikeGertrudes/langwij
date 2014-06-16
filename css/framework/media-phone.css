@@ -1,6 +1,6 @@
-@media only screen 
+/*@media only screen 
 	and (max-width: 568px) {
-		.media-desktop {
+*/		.media-desktop {
 			display: none;
 		}
 		.media-mobile {
@@ -72,4 +72,41 @@
 		input[type="submit"].btn {
 			width: 100%;
 		}
+/*}*/
+
+/* desktop */
+@media only screen 
+	and (min-width: 568px) {
+		.nav-stackable {
+			display: block;
+		}
+			.nav-stackable > li {
+				display: inline;
+			}
+				.nav-stackable.with_pipes > li:after {
+					content: '|';
+				}
+}
+
+/* phones */
+@media only screen 
+	and (max-width: 568px) {
+		.nav-stackable {
+			display: block;
+		}
+			.nav-stackable > li {
+				display: block;
+				width: 100%;
+				margin-bottom:;
+			}
+				.nav-stackable.with-pipes > li:after {
+					content: none;
+				}
+				.nav-stackable > li a {
+					display: block;
+					line-height: 44px;
+					background-color: #e6e6e6;
+					margin-bottom:5px;
+				}
+
 }

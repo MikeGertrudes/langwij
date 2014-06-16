@@ -4,6 +4,9 @@
 }
 
 /* header */
+#main_header {
+	border-bottom: 5px solid #b1078e;
+}
 label[for="language_selector_select"] {
 	position: absolute;
 	top: 12px;
@@ -22,11 +25,17 @@ label[for="language_selector_select"] {
 	width: 44px;
 	height: 44px;
 }
+#logo {
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 4;
+	font-size: 12px;
+}
 
 /* content */
 
 .content {
-	width: 95%;
+	width: 90%;
 }
 
 /* video */
@@ -42,6 +51,13 @@ label[for="language_selector_select"] {
 	text-align: center;
 	padding: 1em;
 }
+	.language-scene .btn {
+		border-bottom: 5px solid #166502;
+	}
+	.language-scene .btn:hover {
+		border-bottom: 5px solid #2ab107;
+		background-color: #51fe24;
+	}
 
 /* playlist */
 .playlist {
@@ -60,10 +76,14 @@ label[for="language_selector_select"] {
 			text-decoration: none;
 			border: 1px solid #eeeeee;
 			border-top: none;
+			color: #333333;
 		}
 			.playlist .playlist-item .playlist-item-anchor.is-playing {
-				border: 1px solid #4f9fcf;
+				border: 1px solid #b1078e;
 				padding: 15px 16px 36px 16px;
+			}
+			.playlist .playlist-item .playlist-item-anchor.has-played {
+				background-color: #faf5f9;
 			}
 			.playlist .playlist-item .playlist-item-anchor:visited {
 				background-color: #eeeeee;
@@ -76,12 +96,11 @@ label[for="language_selector_select"] {
 			.playlist .playlist-item-anchor:first-of-type {
 			}
 			.playlist .playlist-item .item-title {
-				font-size: 16px;
 			}
 			.playlist .playlist-item .item-thumbnail {
 				display: inline-block;
 				float: left;
-				margin-right: 1em;
+				margin-right: 10px;
 			}
 				.playlist .playlist-item .item-thumbnail img {
 					width: 40px;
@@ -96,7 +115,9 @@ label[for="language_selector_select"] {
 				bottom: 12px; /* this is 12px to make up for the 4px given text under the baseline */
 				left: 16px;
 				font-size: 12px;
-			}
+			
+				font-family: 'Lucida Grande';
+}
 			.playlist .playlist-item .item-url {
 				font-size: 12px;
 				white-space: nowrap;
@@ -107,7 +128,9 @@ label[for="language_selector_select"] {
 				position: absolute;
 				bottom: 12px; /* this is 12px to make up for the 4px given text under the baseline */
 				right: 16px;
-			}
+			
+				font-family: 'Lucida Grande';
+}
 				.playlist .playlist-item .item-meta li {
 					background-color: #e1e1e8;
 					font-size: 12px;

@@ -23,29 +23,29 @@
 		<link rel="stylesheet" type="text/css" href="css/app.css">
 
 	</head>
-	<body class="enhanced bg-white gray-333333 has-header-fixed">
+	<body class="enhanced bg-white gray-333333 helvetica-neue has-header-fixed">
 
-		<header class="nav bg-gray-e1e1e8 full-width position-fixed to-top z-index-1 touch-height">
+		<header class="nav bg-gray-e1e1e8 full-width position-fixed to-top z-index-1 touch-height bg-global-color-4" id="main_header">
 			<ul>
 				<li class="display-inline-block width-one-third text-align-left">
 					<form>
 						<label for="nav_primary_toggle" class="media-mobile white touch-height touch-width"></label>
 		 				<input type="checkbox" class="nav-collapsible-toggle media-mobile touch-height touch-width is-hidden-via-opacity" name="nav_primary_toggle" id="nav_primary_toggle">
 						<nav class="slidepanel left with-transition bg-gray text-align-left">
-							<h3 class="bg-gray-e1e1e8 padding-0-1em">General</h3>
+							<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">General</h3>
 							<ul class="gray-eeeeee padding-1em">
 								<li><a href="">Home</a></li>
 								<li><a href="">Playlists</a></li>
 								<li><a href="">Change Language</a></li>
 							</ul>
-							<h3 class="bg-gray-e1e1e8 padding-0-1em">My Account</h3>
+							<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">My Account</h3>
 							<ul class="gray-eeeeee padding-1em">
 								<li><a href="">My Preferences</a></li>
 								<li><a href="">Change Password</a></li>
 								<li><a href="">Change Email</a></li>
 								<li><a href="">Log Out</a></li>
 							</ul>
-							<h3 class="bg-gray-e1e1e8 padding-0-1em">Help</h3>
+							<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">Help</h3>
 							<ul class="gray-eeeeee padding-1em">
 								<li><a href="">F.A.Q.</a></li>
 								<li><a href="">Contact Us</a></li>
@@ -54,7 +54,7 @@
 					</form>
 				</li><!--
 			 --><li class="display-inline-block width-one-third middle text-align-center">
-					<h1><a href="" title="Home">langwij</a></h1>
+					<h1><a href="" title="Home" class="text-decoration-none" id="logo">langwij</a></h1>
 				</li><!--
 			 --><li class="display-inline-block position-relative width-one-third text-align-right">
 					<form name="language_selector" id="language_selector">
@@ -67,24 +67,25 @@
 		</header>
 
 		<section class="content narrow-width margin-0-auto padding-2em-1em" ng-hide="playlistItems">
-			<h2 class="font-weight-bold">Loading...</h2>
-			<p>We thank you for patience while we load your entertainment for this evening.</p>
+			<h2 class="font-size-large font-weight-bold line-height-triple">Loading...</h2>
+			<p class="font-size-medium line-height-single">We thank you for patience while we load your entertainment for this evening.</p>
 		</section>
 
-		<section class="content narrow-width margin-0-auto padding-2em-1em" ng-show="playlistItems">
+		<section class="content narrow-width margin-0-auto padding-2em-0" ng-show="playlistItems">
 
 			<div id="video"></div>
 
 			<div class="language-scene">
 
-				<button id="player_control_prev" ng-click="prevVideo()">prev</button>
-
-				<button id="player_control_play" ng-click="playVideo()">play</button>
-				<button id="player_control_pause" ng-click="pauseVideo()">pause</button>
-				<button id="player_control_stop" ng-click="stopVideo()">stop</button>
-
-				<button id="player_control_next" ng-click="nextVideo()">next</button>
-
+				<nav class="nav-button">
+					<ul class="list-inline">
+						<li><button id="player_control_prev" class="btn bg-global-color-3" ng-click="prevVideo()">prev</button></li>
+						<li><button id="player_control_play" class="btn bg-global-color-3" ng-click="playVideo()">play</button></li>
+						<li><button id="player_control_pause" class="btn bg-global-color-3" ng-click="pauseVideo()">pause</button></li>
+						<li><button id="player_control_stop" class="btn bg-global-color-3" ng-click="stopVideo()">stop</button></li>
+						<li><button id="player_control_next" class="btn bg-global-color-3" ng-click="nextVideo()">next</button></li>
+					</ul>
+				</nav>
 			</div>
 
 			<br>
@@ -94,7 +95,7 @@
 					<a href="" title="" class="playlist-item-anchor" id="playlist_{{ playlistItem.v }}" ng-click="changeVideoURL( playlistItem, $index )" ng-class="itemClass( playlistItem )">
 						<ul class="list-block">
 							<li class="item-thumbnail"><img src="{{ playlistItem.thumbnail }}"></li>
-							<li class="item-title">{{ playlistItem.itemTitle }}</li>
+							<li class="item-title font-size-medium font-weight-bold">{{ playlistItem.itemTitle }}</li>
 							<li class="item-url">{{ playlistItem.url }}</li>
 							<li class="item-duration">{{ playlistItem.duration }}</li>
 							<li class="item-meta">
@@ -116,10 +117,10 @@
 
 		<footer class="text-align-center">
 			<nav id="tertiary" class="padding-1em">
-				<ul>
-					<li><a href="" title="" class="full-width touch-height">Link 1</a></li>
-					<li><a href="" title="" class="full-width touch-height">Link 2</a></li>
-					<li><a href="" title="" class="full-width touch-height">Link 3</a></li>
+				<ul class="nav-stackable with-pipes">
+					<li><a href="" title="">Link 1</a></li>
+					<li><a href="" title="">Link 2</a></li>
+					<li><a href="" title="">Link 3</a></li>
 				</ul>
 			</nav>
 			<span class="copyright display-block padding-1em">&copy; 2014 langwij</span>

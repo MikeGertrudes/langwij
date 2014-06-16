@@ -1,9 +1,15 @@
+/* fonts */
+.helvetica-neue {
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+
+/* sizes */
 .font-size-small {
 	font-size: .8em;
 }
-
 .font-size-medium {
-	font-size: 1em;
+	font-size: 14px;
 }
 .font-size-1p2em {
 	font-size: 1.2em;
@@ -12,8 +18,10 @@
 	font-size: 1.5em;
 }
 .font-size-large {
+	font-size: 2em;
+}
+.font-size-extra-large {
 	font-size: 2.5em;
-	font-weight: 500;
 }
 .font-weight-bold {
 	font-weight: 800;
@@ -45,6 +53,17 @@ i, em{
 }
 strong, b {
 	font-weight: bold;
+}
+
+/* line-height */
+.line-height-single {
+	line-height: 20px;
+}
+.line-height-double {
+	line-height: 40px;
+}
+.line-height-triple {
+	line-height: 60px;
 }
 
 .with-border {
