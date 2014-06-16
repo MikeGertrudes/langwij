@@ -6,6 +6,9 @@ function googleApiClientReady () {
 	gapi.client.load('youtube', 'v3', manuallyBootstrapAngular);
 }
 
+// spoof it for now;
+//manuallyBootstrapAngular();
+
 function manuallyBootstrapAngular () {
 	angular.element(document).ready(function() {
 		angular.bootstrap(document, ['langwij']);
@@ -84,6 +87,10 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 				$scope.updateVideos($scope.selectedLanguage.value);
 
+				// if the slidepanel is open, close it
+				// TODO: find a better way to do this
+				$scope.closeSlidePanel();
+
 			} else {
 				console.error('selectedLanguage is not defined');
 			}
@@ -109,7 +116,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 					tmpObject.thumbnail =  response.result.items[i].snippet.thumbnails['default'].url;
 					tmpObject.language = $scope.selectedLanguage;
 					tmpObject.duration = 'n/a';
-					tmpObject.url = '//www.youtube.com/embed/' + response.result.items[i].id.videoId;
+					tmpObject.url = 'http://www.youtube.com/embed/' + response.result.items[i].id.videoId;
 					tmpObject.v = response.result.items[i].id.videoId;
 
 					// update the tmp array
@@ -228,6 +235,16 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			angular.element(document.querySelector('.is-playing')).removeClass('is-playing');
 			angular.element(document.getElementById('playlist_' + v) ).addClass('is-playing');
 		};
+
+		$scope.closeSlidePanel = function () {
+			console.log('close slidepanel');
+			angular.element(document.getElementById('nav_primary_toggle')).checked = false;
+		}
+
+		$scope.openSlidePanel = function () {
+			console.log('open slidepanel');
+			angular.element(document.getElementById('nav_primary_toggle')).checked = true;
+		}
 
 		// document.addEventListener( 'keyup', function(event) { 
 		// 	if (event.keyCode === 37) { /* LEFT */

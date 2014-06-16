@@ -2,6 +2,9 @@
 .narrow-width {
 	max-width: 700px;
 }
+a.gray-eeeeee {
+	color: #eeeeee;
+}
 
 /* header */
 #main_header {
