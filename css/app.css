@@ -5,7 +5,11 @@
 a.gray-eeeeee {
 	color: #eeeeee;
 }
-
+hr {
+	border: 1px solid #eeeeee;
+	margin-top: 19px;
+	margin-bottom: 20px;
+}
 /* header */
 #main_header {
 	border-bottom: 5px solid #b1078e;
@@ -45,7 +49,7 @@ label[for="language_selector_select"] {
 #video {
 	width: 100%;
 	/* display: none; */
-	/* height: 30px; */
+	height: 30px;
 }
 
 /* language-scene */

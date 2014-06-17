@@ -66,7 +66,17 @@
 			</ul>
 		</header>
 
-		<section class="content narrow-width margin-0-auto padding-2em-1em" ng-hide="playlistItems">
+		<section class="content narrow-width margin-0-auto padding-2em-1em" ng-hide="playlistItems || showLoading">
+			<h2 class="font-size-large font-weight-bold line-height-triple">Welcome</h2>
+			<p class="font-size-medium line-height-single">Welcome to langwij. We are here as a complement to your language courses. Stream audio in the language of your choosing and just work the day away as your normally would and let your subconscious do the work.</p>
+			<hr class="line-height-double">
+			<p class="font-size-medium line-height-single font-weight-bold">Which language are you learning?</p>
+			<br>
+			<select name="language_selector_select" ng-model="selectedLanguage" ng-options="language.name for language in languages">
+			</select>
+		</section>
+
+		<section class="content narrow-width margin-0-auto padding-2em-1em ng-hide" ng-show="showLoading">
 			<h2 class="font-size-large font-weight-bold line-height-triple">Loading...</h2>
 			<p class="font-size-medium line-height-single">We thank you for patience while we load your entertainment for this evening.</p>
 		</section>
@@ -114,6 +124,8 @@
 
 		</section>
 
+		<hr>
+		
 		<footer class="text-align-center">
 			<nav id="tertiary" class="padding-1em">
 				<ul class="nav-stackable with-pipes">

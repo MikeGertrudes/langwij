@@ -99,6 +99,8 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 		$scope.updateVideos = function(language) {
 
+			$scope.showLoading = true;
+
 			// do something here
 			var searchVideos = SearchVideos.search(language);
 
@@ -122,6 +124,9 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 					// update the tmp array
 					tmpArray.push(tmpObject);
 				}
+
+				// hide the loading screen
+				$scope.showLoading = false;
 
 				// need this arghhhh to get it to update correctly
 				// is it the right way???
