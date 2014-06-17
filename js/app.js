@@ -145,13 +145,12 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			});
 		};
 
-		$scope.changeVideoURL = function (playlistItem, index) {
+		$scope.changeVideoURL = function (playlistItem) {
 
 			// get the clicked playlist item's youtube id
 			$scope.v = playlistItem.v;
 
 			$scope.currentItem = playlistItem;
-			$scope.currentItemIndex = index;
 
 			// make a new player listener and when ready, play it
 			if (!$scope.player) {
@@ -184,7 +183,14 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		$scope.playVideo = function () {
 			console.log('video is onReady');
 			console.log($scope.player);
-			$scope.player.playVideo();
+			// if the player exists, play it
+			if ($scope.player) {
+				$scope.player.playVideo();
+			} else {
+				// if it doesn't exist, create it using the first one
+				$scope.changeVideoURL($scope.playlistItems[0]);
+
+			}
 		};
 
 		$scope.pauseVideo = function () {
@@ -211,7 +217,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				$scope.currentItemIndex = tmp;
 				$scope.currentItem = $scope.playlistItems[ $scope.currentItemIndex ];
 				$scope.v = $scope.currentItem.v;
-				$scope.changeVideoURL($scope.currentItem, $scope.currentItemIndex);
+				$scope.changeVideoURL($scope.currentItem);
 			} else {
 				console.log('sorry bro we at the start of the list');
 			}
@@ -226,7 +232,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				$scope.currentItemIndex = tmp;
 				$scope.currentItem = $scope.playlistItems[ $scope.currentItemIndex ];
 				$scope.v = $scope.currentItem.v;
-				$scope.changeVideoURL($scope.currentItem, $scope.currentItemIndex);
+				$scope.changeVideoURL($scope.currentItem);
 			} else {
 				console.log('sorry bro we at the end of the list');
 
