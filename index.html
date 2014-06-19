@@ -20,6 +20,10 @@
 		<link rel="stylesheet" type="text/css" href="css/framework/states.css">
 		<link rel="stylesheet" type="text/css" href="css/framework/media-phone.css">
 
+		<!-- START overlay-directive -->
+		<link rel="stylesheet" type="text/css" href="inc/overlay-directive/overlay-directive.css">
+		<!-- END overlay-directive -->
+
 		<link rel="stylesheet" type="text/css" href="css/app.css">
 
 	</head>
@@ -30,26 +34,33 @@
 				<li class="display-inline-block width-one-third text-align-left">
 					<form>
 						<label for="nav_primary_toggle" class="media-mobile white touch-height touch-width"></label>
+						<span class="notification" ng-if="notificationCenter.notificationCount">{{notificationCenter.notificationCount}}</span>
 		 				<input type="checkbox" class="nav-collapsible-toggle media-mobile touch-height touch-width is-hidden-via-opacity" name="nav_primary_toggle" id="nav_primary_toggle">
 						<nav class="slidepanel left with-transition font-size-medium bg-gray text-align-left">
-							<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">General</h3>
-							<ul class="gray-eeeeee padding-1em">
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Home</a></li>
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Playlists</a></li>
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Change Language</a></li>
-							</ul>
-							<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">My Account</h3>
-							<ul class="gray-eeeeee padding-1em">
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">My Preferences</a></li>
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Change Password</a></li>
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Change Email</a></li>
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Log Out</a></li>
-							</ul>
-							<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">Help</h3>
-							<ul class="gray-eeeeee padding-1em">
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">F.A.Q.</a></li>
-								<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Contact Us</a></li>
-							</ul>
+							<div>
+								<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">General</h3>
+								<ul class="gray-eeeeee padding-1em">
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Home</a></li>
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Playlists</a></li>
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Change Language</a></li>
+								</ul>
+							</div>
+							<div ng-if="user.isSignedIn">
+								<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">My Account</h3>
+								<ul class="gray-eeeeee padding-1em">
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">My Preferences</a></li>
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Change Password</a></li>
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Change Email</a></li>
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Log Out</a></li>
+								</ul>
+							</div>
+							<div>
+								<h3 class="bg-gray-e1e1e8 padding-0-1em font-weight-bold">Help</h3>
+								<ul class="gray-eeeeee padding-1em">
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">F.A.Q.</a></li>
+									<li><a href="" class="gray-eeeeee text-decoration-none full-width touch-height">Contact Us</a></li>
+								</ul>
+							</div>
 						</nav>
 					</form>
 				</li><!--
@@ -74,11 +85,6 @@
 			<br>
 			<select name="language_selector_select" ng-model="selectedLanguage" ng-options="language.name for language in languages">
 			</select>
-		</section>
-
-		<section class="content narrow-width margin-0-auto padding-2em-1em ng-hide" ng-show="showLoading">
-			<h2 class="font-size-large font-weight-bold line-height-triple">Loading...</h2>
-			<p class="font-size-medium line-height-single">We thank you for patience while we load your entertainment for this evening.</p>
 		</section>
 
 		<section class="content narrow-width margin-0-auto padding-2em-0 ng-hide" ng-show="playlistItems">
@@ -137,9 +143,20 @@
 			<span class="copyright display-block padding-1em font-size-medium">&copy; 2014 langwij</span>
 		</footer>
 
+		<overlay ng-transclude ng-show="showLoading">
+			<div class="content narrow-width margin-0-auto padding-2em-1em bg-white">
+				<h2 class="font-size-large font-weight-bold line-height-triple">Loading...</h2>
+				<p class="font-size-medium line-height-single">We thank you for patience while we load your entertainment for this evening.</p>
+			</div>
+		</overlay>
 
 		<script src="js/vendor/angular.min.js"></script>
 		<script src="js/vendor/angular-resource.min.js"></script>
+		
+		<!-- START overlay-directive -->
+		<script src="inc/overlay-directive/overlay-directive.js"></script>
+		<!-- END overlay-directive -->
+
 		<script src="js/app.js"></script>
 		<script>
 			var tag = document.createElement('script');

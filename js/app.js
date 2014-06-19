@@ -1,4 +1,5 @@
 var app = angular.module('langwij', [
+		'OverlayDirective'
 	]);
 
 function googleApiClientReady () {
@@ -33,6 +34,15 @@ function onPlayerReady(event) {
 
 
 app.controller('langwijController', function ($scope, $document, JsonService, SearchVideos) {
+
+		// notifications center
+		$scope.notificationCenter = {};
+		$scope.notificationCenter.notifications = [
+			{message: 'This is notification 1'},
+			{message: 'This is notification 2'}
+		];
+		$scope.notificationCenter.hasNotifications = false;
+		$scope.notificationCenter.notificationCount = $scope.notificationCenter.notifications.length;
 
 		$scope.languages = [
 			{
@@ -164,7 +174,8 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 					events: {
 						// call this function when player is ready to use
 						'onReady': $scope.playVideo,
-						'onStateChange': $scope.handleVideoStatus
+						'onStateChange': $scope.handleVideoStatus,
+						'onError': $scope.handleVideoError
 					}
 				});
 			} else {
@@ -211,6 +222,11 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			} else if (event.data === 2) { // is paused
 				$scope.isPlaying = false;
 			}
+		};
+
+		$scope.handleVideoError = function (event) {
+			console.log(event);
+			alert('Oops! There was a problem accessing the video.')
 		};
 
 		// custom playlist controls

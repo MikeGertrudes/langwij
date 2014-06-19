@@ -1,0 +1,19 @@
+body.no-scroll, body.with-overlay {
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+}
+.overlay {
+	position: fixed;
+	overflow-y: scroll;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: block;
+	background-color: #000000;
+	background-color: rgba(0,0,0,.6);
+}
+	.overlay .overlay-child {
+		position: static;
+	}

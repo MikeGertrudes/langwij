@@ -10,6 +10,9 @@ hr {
 	margin-top: 19px;
 	margin-bottom: 20px;
 }
+body.has-header-fixed .overlay {
+	padding-top: 45px;
+}
 /* header */
 #main_header {
 	border-bottom: 5px solid #b1078e;
@@ -37,6 +40,20 @@ label[for="language_selector_select"] {
 	text-transform: uppercase;
 	letter-spacing: 4;
 	font-size: 12px;
+}
+.notification {
+    border-radius: 50%;
+    background-color: red;
+    width: 16px;
+    height: 16px;
+    color: white;
+    font-size: 10px;
+    display: block;
+    position: absolute;
+    line-height: 16px;
+    text-align: center;
+    top: 4px;
+    left: 22px;
 }
 
 /* content */
