@@ -164,7 +164,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 					events: {
 						// call this function when player is ready to use
 						'onReady': $scope.playVideo,
-						'onStateChange': $scope.videoStopped
+						'onStateChange': $scope.handleVideoStatus
 					}
 				});
 			} else {
@@ -182,8 +182,6 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 		// youtube-specific controls
 		$scope.playVideo = function () {
-			console.log('video is onReady');
-			console.log($scope.player);
 			// if the player exists, play it
 			if ($scope.player) {
 				$scope.player.playVideo();
@@ -201,11 +199,17 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			$scope.player.stopVideo();
 		};
 
-		$scope.videoStopped = function (event) {
+		$scope.handleVideoStatus = function (event) {
+
+			console.log('player status', event.data);
 			// sense for 0, that's youtube telling us the video has stopped
 			if (event.data === 0) {
-				console.log('video stopped');
 				$scope.nextVideo();
+				$scope.isPlaying = false;
+			} else if (event.data === 1) { // is playing
+				$scope.isPlaying = true;
+			} else if (event.data === 2) { // is paused
+				$scope.isPlaying = false;
 			}
 		};
 
@@ -219,7 +223,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				$scope.v = $scope.currentItem.v;
 				$scope.changeVideoURL($scope.currentItem, $scope.currentItemIndex);
 			} else {
-				console.log('sorry bro we at the start of the list');
+				// console.log('sorry bro we at the start of the list');
 			}
 			// TODO make this so that we don't need v AND currentItem. A change to current update should just do it
 		};
@@ -234,7 +238,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				$scope.v = $scope.currentItem.v;
 				$scope.changeVideoURL($scope.currentItem, $scope.currentItemIndex);
 			} else {
-				console.log('sorry bro we at the end of the list');
+				// console.log('sorry bro we at the end of the list');
 
 			}
 			// TODO make this so that we don't need v AND currentItem. A change to current update should just do it
@@ -242,28 +246,41 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 		// styles
 		$scope.highlightCurrentVideo = function (v) {
-			console.log('highlightCurrentVideo', '#playlist_' + v);
+			// console.log('highlightCurrentVideo', '#playlist_' + v);
 			angular.element(document.querySelector('.is-playing')).removeClass('is-playing');
 			angular.element(document.getElementById('playlist_' + v) ).addClass('is-playing');
 		};
 
 		$scope.closeSlidePanel = function () {
-			console.log('close slidepanel');
+			// console.log('close slidepanel');
 			angular.element(document.getElementById('nav_primary_toggle')).checked = false;
 		}
 
 		$scope.openSlidePanel = function () {
-			console.log('open slidepanel');
+			// console.log('open slidepanel');
 			angular.element(document.getElementById('nav_primary_toggle')).checked = true;
 		}
 
-		// document.addEventListener( 'keyup', function(event) { 
-		// 	if (event.keyCode === 37) { /* LEFT */
-		// 		$scope.prevVideo();
-		// 	} else if (event.keyCode === 39) { /* RIGHT */
-		// 		$scope.nextVideo();
-		// 	}
-		// });
+		$scope.handleKeyup = function (event) {
+			if (event.keyCode === 37) { /* LEFT */
+				$scope.prevVideo();
+			} else if (event.keyCode === 39) { /* RIGHT */
+				$scope.nextVideo();
+			} else if (event.keyCode === 32) { /* SPACEBAR */
+				// if player exists
+				if ($scope.player) {
+					// if player exists and is playing, pause it
+					if ($scope.isPlaying) {
+						// console.log('pause video');
+						$scope.pauseVideo();
+					} else { // if player exists but isn't playing
+						// console.log('play video');
+						$scope.playVideo();
+					}
+				}
+			}
+		}
+
 
 
 		// TODO: find out how to find duration
