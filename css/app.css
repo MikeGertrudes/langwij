@@ -17,6 +17,12 @@ body.has-header-fixed .overlay {
 #main_header {
 	border-bottom: 5px solid #b1078e;
 }
+	#main_header .dot-container {
+		position: absolute;
+		left: 50%;
+		margin-left: 40px;
+		font-size: 10px;
+	}
 label[for="language_selector_select"] {
 	position: absolute;
 	top: 12px;
@@ -41,20 +47,22 @@ label[for="language_selector_select"] {
 	letter-spacing: 4;
 	font-size: 12px;
 }
-.notification {
+.circle {
     border-radius: 50%;
-    background-color: red;
     width: 16px;
     height: 16px;
-    color: white;
-    font-size: 10px;
-    display: block;
-    position: absolute;
+    display: inline-block!important;
     line-height: 16px;
     text-align: center;
-    top: 4px;
-    left: 22px;
 }
+	.circle.notification {
+	    position: absolute;
+	    top: 4px;
+	    left: 22px;
+	    background-color: red;
+	    font-size: 10px;
+	    color: white;
+	}
 
 /* content */
 
@@ -152,13 +160,15 @@ label[for="language_selector_select"] {
 				position: absolute;
 				bottom: 12px; /* this is 12px to make up for the 4px given text under the baseline */
 				right: 16px;
-			
 				font-family: 'Lucida Grande';
-}
+			}
 				.playlist .playlist-item .item-meta li {
 					background-color: #e1e1e8;
 					font-size: 12px;
 				}
+					.playlist .playlist-item .item-meta li:first-child {
+						margin-right: 3px;
+					}
 
 /* flags */
 #language_selector_select_label {

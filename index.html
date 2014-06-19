@@ -20,9 +20,10 @@
 		<link rel="stylesheet" type="text/css" href="css/framework/states.css">
 		<link rel="stylesheet" type="text/css" href="css/framework/media-phone.css">
 
-		<!-- START overlay-directive -->
+		<!-- START angular directives -->
 		<link rel="stylesheet" type="text/css" href="inc/overlay-directive/overlay-directive.css">
-		<!-- END overlay-directive -->
+		<link rel="stylesheet" type="text/css" href="inc/dots-directive/dots-directive.css">
+		<!-- END angular directives -->
 
 		<link rel="stylesheet" type="text/css" href="css/app.css">
 
@@ -34,7 +35,7 @@
 				<li class="display-inline-block width-one-third text-align-left">
 					<form>
 						<label for="nav_primary_toggle" class="media-mobile white touch-height touch-width"></label>
-						<span class="notification" ng-if="notificationCenter.notificationCount">{{notificationCenter.notificationCount}}</span>
+						<span class="circle notification" ng-if="notificationCenter.notificationCount">{{notificationCenter.notificationCount}}</span>
 		 				<input type="checkbox" class="nav-collapsible-toggle media-mobile touch-height touch-width is-hidden-via-opacity" name="nav_primary_toggle" id="nav_primary_toggle">
 						<nav class="slidepanel left with-transition font-size-medium bg-gray text-align-left">
 							<div>
@@ -65,7 +66,10 @@
 					</form>
 				</li><!--
 			 --><li class="display-inline-block width-one-third middle text-align-center">
-					<h1><a href="" title="Home" class="text-decoration-none" id="logo">langwij</a></h1>
+					<h1>
+						<a href="" title="Home" class="text-decoration-none" id="logo">langwij</a>
+						<dots ng-show="showLoading"></dots>
+					</h1>
 				</li><!--
 			 --><li class="display-inline-block position-relative width-one-third text-align-right">
 					<form name="language_selector" id="language_selector">
@@ -116,8 +120,8 @@
 							<li class="item-duration">{{ playlistItem.duration }}</li>
 							<li class="item-meta">
 								<ul class="list-inline">
-									<li>U</li><!--
-								 --><li>D</li>
+									<li class="circle">+</li><!--
+								 --><li class="circle">-</li>
 								</ul>
 							</li>
 							<li class="item-language is-hidden">{{ playlistItem.language }}</li>
@@ -143,7 +147,7 @@
 			<span class="copyright display-block padding-1em font-size-medium">&copy; 2014 langwij</span>
 		</footer>
 
-		<overlay ng-transclude ng-show="showLoading">
+		<overlay ng-transclude class="ng-hide">
 			<div class="content narrow-width margin-0-auto padding-2em-1em bg-white">
 				<h2 class="font-size-large font-weight-bold line-height-triple">Loading...</h2>
 				<p class="font-size-medium line-height-single">We thank you for patience while we load your entertainment for this evening.</p>
@@ -153,9 +157,10 @@
 		<script src="js/vendor/angular.min.js"></script>
 		<script src="js/vendor/angular-resource.min.js"></script>
 		
-		<!-- START overlay-directive -->
+		<!-- START angular directives -->
 		<script src="inc/overlay-directive/overlay-directive.js"></script>
-		<!-- END overlay-directive -->
+		<script src="inc/dots-directive/dots-directive.js"></script>
+		<!-- END angular directives -->
 
 		<script src="js/app.js"></script>
 		<script>

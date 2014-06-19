@@ -1,5 +1,6 @@
 var app = angular.module('langwij', [
-		'OverlayDirective'
+		'OverlayDirective',
+		'DotsDirective'
 	]);
 
 function googleApiClientReady () {
@@ -99,7 +100,9 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 				// if the slidepanel is open, close it
 				// TODO: find a better way to do this
-				$scope.closeSlidePanel();
+				if (document.getElementById('nav_primary_toggle').checked) {
+					$scope.closeSlidePanel();
+				}
 
 			} else {
 				console.error('selectedLanguage is not defined');
@@ -268,13 +271,17 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		};
 
 		$scope.closeSlidePanel = function () {
-			// console.log('close slidepanel');
-			angular.element(document.getElementById('nav_primary_toggle')).checked = false;
+			console.log('close slidepanel');
+			//angular.element(document.getElementById('nav_primary_toggle')).checked = false;
+			// doesn't work like that in angular
+			document.getElementById('nav_primary_toggle').checked = false;
 		}
 
 		$scope.openSlidePanel = function () {
-			// console.log('open slidepanel');
-			angular.element(document.getElementById('nav_primary_toggle')).checked = true;
+			console.log('open slidepanel');
+			//angular.element(document.getElementById('nav_primary_toggle')).checked = true;
+			// doesn't work like that in angular
+			document.getElementById('nav_primary_toggle').checked = true;
 		}
 
 		$scope.handleKeyup = function (event) {
@@ -296,7 +303,6 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 				}
 			}
 		}
-
 
 
 		// TODO: find out how to find duration
@@ -324,8 +330,11 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 		// TODO: highlight current playing item ALWAYS
 		// TODO: what to do in the case of youtube not allowing it?
 		// TODO: what to do when we get to end of list
-		// TODO: colors
 		// TODO: css hide, or template ng-include
+		// TODO: use localStorage to pre-select last loaded language
+		// TODO: use localStorage to store amount of time listened to thus far, could be cookies too?
+		// TODO: slidepanel, sense when it is done closing, then show the loading 
+		// 		 webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend'
 
 });
 
