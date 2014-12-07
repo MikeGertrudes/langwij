@@ -229,7 +229,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 
 		$scope.handleVideoError = function (event) {
 			console.log(event);
-			alert('Oops! There was a problem accessing the video.')
+			alert('Oops! There was a problem accessing the video.');
 		};
 
 		// custom playlist controls
@@ -275,14 +275,14 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 			//angular.element(document.getElementById('nav_primary_toggle')).checked = false;
 			// doesn't work like that in angular
 			document.getElementById('nav_primary_toggle').checked = false;
-		}
+		};
 
 		$scope.openSlidePanel = function () {
 			console.log('open slidepanel');
 			//angular.element(document.getElementById('nav_primary_toggle')).checked = true;
 			// doesn't work like that in angular
 			document.getElementById('nav_primary_toggle').checked = true;
-		}
+		};
 
 		$scope.handleKeyup = function (event) {
 			if (event.keyCode === 37) { /* LEFT */
@@ -302,7 +302,7 @@ app.controller('langwijController', function ($scope, $document, JsonService, Se
 					}
 				}
 			}
-		}
+		};
 
 
 		// TODO: find out how to find duration
